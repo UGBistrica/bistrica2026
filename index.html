@@ -135,7 +135,6 @@
 // POSTAVKE ZA TVOJ TURNIR (KOPIRAJ LINK IZ FIREBASE-A OVDJE)
 // =========================================================================
 const FIREBASE_URL = "https://bistrica2026-default-rtdb.europe-west1.firebasedatabase.app/"; 
-const ADMIN_HASH = "7a40ca189be963fa1c52119bb9f3dd90d9894e6bf9d7fb655452d3a776f8e77a";
 // =========================================================================
 
 const strukturaTurnira = {
@@ -534,7 +533,7 @@ async function sha256(message) {
     return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
 }
 
-async function adminPrijava() {
+function adminPrijava() {
     if(isAdmin) {
         isAdmin = false;
         document.getElementById('statusAdmin').classList.add('d-none');
@@ -545,14 +544,15 @@ async function adminPrijava() {
     }
     const lozinka = prompt("Unesi lozinku za administraciju:");
     if (lozinka !== null) {
-        const uneseniHash = await sha256(lozinka);
-        if (uneseniHash === ADMIN_HASH) {
-            isAdmin = true;
-            document.getElementById('statusAdmin').classList.remove('d-none');
-            document.getElementById('btnReset').classList.remove('d-none');
-            document.getElementById('btnPrijava').innerText = "Odjavi se (Pregled)";
-            prikaziSve();
-        } else { alert("Pogrešna lozinka!"); }
+        sha256(lozinka).then(uneseniHash => {
+            if (uneseniHash === "f9e9ec47f9e802058ca76e6b4850c950b73c4f03d5fa6cf04245b736b4d3065b") {
+                isAdmin = true;
+                document.getElementById('statusAdmin').classList.remove('d-none');
+                document.getElementById('btnReset').classList.remove('d-none');
+                document.getElementById('btnPrijava').innerText = "Odjavi se (Pregled)";
+                prikaziSve();
+            } else { alert("Pogrešna lozinka!"); }
+        });
     }
 }
 
