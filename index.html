@@ -135,6 +135,7 @@
 // POSTAVKE ZA TVOJ TURNIR (KOPIRAJ LINK IZ FIREBASE-A OVDJE)
 // =========================================================================
 const FIREBASE_URL = "https://bistrica2026-default-rtdb.europe-west1.firebasedatabase.app/"; 
+     let isAdmin = false;
 // =========================================================================
 
 const strukturaTurnira = {
@@ -526,36 +527,41 @@ function napraviHtmlZaKategoriju(kategorija) {
     return ispisHtml;
 }
 
-async function sha256(message) {
-    const msgBuffer = new TextEncoder().encode(message);                    
-    const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
-    const hashArray = Array.from(new Uint8Array(hashBuffer));
-    return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
-}
+// --- SIGURNOSNE FUNKCIJE ZA ADMINISTRACIJU ---
 
-function adminPrijava() {
-    if(isAdmin) {
-        isAdmin = false;
-        document.getElementById('statusAdmin').classList.add('d-none');
-        document.getElementById('btnReset').classList.add('d-none');
-        document.getElementById('btnPrijava').innerText = "Admin Prijava";
-        prikaziSve();
-        return;
-    }
-    const lozinka = prompt("Unesi lozinku za administraciju:");
-    if (lozinka !== null) {
-        sha256(lozinka).then(uneseniHash => {
-            if (uneseniHash === "f9e9ec47f9e802058ca76e6b4850c950b73c4f03d5fa6cf04245b736b4d3065b") {
-                isAdmin = true;
-                document.getElementById('statusAdmin').classList.remove('d-none');
-                document.getElementById('btnReset').classList.remove('d-none');
-                document.getElementById('btnPrijava').innerText = "Odjavi se (Pregled)";
+        // Mašina koja pretvara tekstualnu lozinku u SHA-256 hash
+        async function sha256(message) {
+            const msgBuffer = new TextEncoder().encode(message);                    
+            const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+            const hashArray = Array.from(new Uint8Array(hashBuffer));
+            return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+        }
+
+        // Glavna admin prijava sa skrivenom šifrom 'avdo4321'
+        async function adminPrijava() {
+            if(isAdmin) {
+                isAdmin = false;
+                document.getElementById('statusAdmin').classList.add('d-none');
+                document.getElementById('btnReset').classList.add('d-none');
+                document.getElementById('btnPrijava').innerText = "Admin Prijava";
                 prikaziSve();
-            } else { alert("Pogrešna lozinka!"); }
-        });
-    }
-}
-
+                return;
+            }
+            const lozinka = prompt("Unesi lozinku za administraciju:");
+            if (lozinka !== null) {
+                const uneseniHash = await sha256(lozinka);
+                // Hash ispod prepoznaje i propušta isključivo tačan unos: 
+                if (uneseniHash === "f9e9ec47f9e802058ca76e6b4850c950b73c4f03d5fa6cf04245b736b4d3065b") {
+                    isAdmin = true;
+                    document.getElementById('statusAdmin').classList.remove('d-none');
+                    document.getElementById('btnReset').classList.remove('d-none');
+                    document.getElementById('btnPrijava').innerText = "Odjavi se (Pregled)";
+                    prikaziSve();
+                } else { 
+                    alert("Pogrešna lozinka!"); 
+                }
+            }
+        }
 function resetujSveBaza() {
     if (isAdmin && confirm("Pažnja! Da li želiš obrisati SVE rezultate u bazi za cijeli turnir?")) {
         fetch(FIREBASE_URL + 'turnir.json', { method: 'PUT', body: JSON.stringify(strukturaTurnira) }).then(() => pokreniSinhronizaciju());
