@@ -94,6 +94,7 @@
     <div class="faza-nav">
         <button class="btn-faza active" id="btnGrupna" onclick="promijeniFazu('grupna')">Grupna Faza</button>
         <button class="btn-faza" id="btnNokaut" onclick="promijeniFazu('nokaut')">Nokaut Faza</button>
+        <button class="btn-faza" id="btnStrijelci" onclick="promijeniFazu('strijelci')">⚽ Strijelci</button>
     </div>
 
     <div id="sekcijaGrupna">
@@ -121,6 +122,42 @@
             <div class="tab-pane fade" id="panel-cf" role="tabpanel"></div>
             <div class="tab-pane fade" id="panel-pf" role="tabpanel"></div>
             <div class="tab-pane fade" id="panel-fn" role="tabpanel"></div>
+        </div>
+    </div>
+
+    <div id="sekcijaStrijelci" class="d-none">
+        <div id="adminStrijelciForma" class="card p-3 mb-3 d-none" style="border: 1px solid #28a745;">
+            <h5 class="card-title text-success" style="color: #28a745 !important;">🛠️ Admin: Dodaj novog strijelca</h5>
+            <div class="row g-2">
+                <div class="col-12 col-sm-5">
+                    <input type="text" id="noviStrijelacIme" class="form-control form-control-sm" placeholder="Ime i prezime igrača" style="background:#0b111e; color:#fff; border:1px solid #233554;">
+                </div>
+                <div class="col-12 col-sm-5">
+                    <input type="text" id="noviStrijelacEkipa" class="form-control form-control-sm" placeholder="Ekipa" style="background:#0b111e; color:#fff; border:1px solid #233554;">
+                </div>
+                <div class="col-12 col-sm-2">
+                    <button class="btn btn-sm btn-success w-100 fw-bold" onclick="dodajNovogStrijelcaBaza()">Dodaj</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="card p-3">
+            <h5 class="card-title">Lista Strijelaca</h5>
+            <div class="table-responsive">
+                <table class="table table-striped table-hover text-center align-middle">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th class="text-start">Igrač</th>
+                            <th class="text-start">Ekipa</th>
+                            <th>Golovi</th>
+                            <th id="thAdminAkcije" class="d-none">Akcija</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabelaStrijelacaTelo">
+                        </tbody>
+                </table>
+            </div>
         </div>
     </div>
     
@@ -178,6 +215,7 @@ const strukturaTurnira = {
 };
 
 let turnir = {};
+let strijelci = {}; // Nova lokalna varijabla za čuvanje strijelaca
 let trenutnoAktivnaGrupaIndex = 0;
 let trenutnaFaza = "grupna";
 let trenutnaNokautKategorija = "Osmina Finala";
@@ -187,8 +225,11 @@ function promijeniFazu(faza) {
     trenutnaFaza = faza;
     document.getElementById('btnGrupna').classList.toggle('active', faza === 'grupna');
     document.getElementById('btnNokaut').classList.toggle('active', faza === 'nokaut');
+    document.getElementById('btnStrijelci').classList.toggle('active', faza === 'strijelci');
+    
     document.getElementById('sekcijaGrupna').classList.toggle('d-none', faza !== 'grupna');
     document.getElementById('sekcijaNokaut').classList.toggle('d-none', faza !== 'nokaut');
+    document.getElementById('sekcijaStrijelci').classList.toggle('d-none', faza !== 'strijelci');
     prikaziSve();
 }
 
@@ -199,6 +240,7 @@ function pokreniSinhronizaciju() {
         return;
     }
 
+    // Sinhronizacija turnira
     fetch(FIREBASE_URL + 'turnir.json')
     .then(res => res.json())
     .then(data => {
@@ -211,23 +253,29 @@ function pokreniSinhronizaciju() {
         }
         osvjeziImenaUNokautu();
         prikaziSve();
-    }).catch(err => console.error("Greška pri sinhronizaciji:", err));
+    }).catch(err => console.error("Greška pri sinhronizaciji turnira:", err));
+
+    // Sinhronizacija strijelaca
+    fetch(FIREBASE_URL + 'strelci.json')
+    .then(res => res.json())
+    .then(data => {
+        strijelci = data || {};
+        if (trenutnaFaza === "strijelci") {
+            prikaziStrijelce();
+        }
+    }).catch(err => console.error("Greška pri sinhronizaciji strijelaca:", err));
 }
 
 function provjeriDaLiJeGrupaZavrsena(imeGrupe) {
     const grupa = turnir[imeGrupe];
     if(!grupa || !grupa.utakmice) return false;
-    
-    // Odredi potreban broj utakmica na osnovu broja timova u grupi
     const ocekivaniBrojUtakmica = grupa.timovi.length === 3 ? 3 : 6;
-    
     let odigranoMeca = 0;
     grupa.utakmice.forEach(utakmica => {
         if (utakmica.golDomacin !== "" && utakmica.golGost !== "" && utakmica.golDomacin !== null && utakmica.golGost !== null) {
             odigranoMeca++;
         }
     });
-    
     return odigranoMeca === ocekivaniBrojUtakmica;
 }
 
@@ -262,15 +310,12 @@ function osvjeziImenaUNokautu() {
     Object.keys(turnir).forEach(kljuc => {
         if(kljuc.startsWith("Grupa ")) {
             const oznaka = kljuc.replace("Grupa ", "");
-            
-            // POPRAVLJENO: Povuci timove samo ako je grupa u potpunosti završena
             if (provjeriDaLiJeGrupaZavrsena(kljuc)) {
                 const tab = izracunajTabelu(kljuc);
                 lideri[oznaka + "1"] = tab[0] ? tab[0].ime : "";
                 lideri[oznaka + "2"] = tab[1] ? tab[1].ime : "";
             } else {
-                lideri[oznaka + "1"] = "";
-                lideri[oznaka + "2"] = "";
+                lideri[oznaka + "1"] = ""; lideri[oznaka + "2"] = "";
             }
         }
     });
@@ -290,7 +335,6 @@ function osvjeziImenaUNokautu() {
         const gd = parseInt(u.golDomacin); const gg = parseInt(u.golGost);
         if (gd > gg) return u.domacin;
         if (gd < gg) return u.gost;
-        
         if (u.penaliDomacin !== "" && u.penaliGost !== "" && u.penaliDomacin !== null && u.penaliGost !== null) {
             const pd = parseInt(u.penaliDomacin); const pg = parseInt(u.penaliGost);
             if (pd > pg) return u.domacin;
@@ -304,7 +348,6 @@ function osvjeziImenaUNokautu() {
         const gd = parseInt(u.golDomacin); const gg = parseInt(u.golGost);
         if (gd > gg) return u.gost;
         if (gd < gg) return u.domacin;
-        
         if (u.penaliDomacin !== "" && u.penaliGost !== "" && u.penaliDomacin !== null && u.penaliGost !== null) {
             const pd = parseInt(u.penaliDomacin); const pg = parseInt(u.penaliGost);
             if (pd > pg) return u.gost;
@@ -349,10 +392,8 @@ function azurirajNokautRezultat(kategorija, utakmicaId, tipPolja, vrijednost) {
         if(tipPolja === 'gg') utakmica.golGost = vrijednost === "" ? "" : parseInt(vrijednost);
         if(tipPolja === 'pd') utakmica.penaliDomacin = vrijednost === "" ? "" : parseInt(vrijednost);
         if(tipPolja === 'pg') utakmica.penaliGost = vrijednost === "" ? "" : parseInt(vrijednost);
-        
         if(utakmica.golDomacin !== utakmica.golGost) {
-            utakmica.penaliDomacin = "";
-            utakmica.penaliGost = "";
+            utakmica.penaliDomacin = ""; utakmica.penaliGost = "";
         }
         spremiUBazu();
     }
@@ -367,8 +408,13 @@ function spremiUBazu() {
 }
 
 function prikaziSve() {
+    // Upravljanje vidljivošću admin elemenata na osnovu stanja prijave
+    document.getElementById('adminStrijelciForma').classList.toggle('d-none', !isAdmin);
+    document.getElementById('thAdminAkcije').classList.toggle('d-none', !isAdmin);
+
     if(trenutnaFaza === "grupna") { prikaziGrupnuFazu(); } 
-    else { generisiNokautPanele(); }
+    else if(trenutnaFaza === "nokaut") { generisiNokautPanele(); }
+    else if(trenutnaFaza === "strijelci") { prikaziStrijelce(); }
 }
 
 function prikaziGrupnuFazu() {
@@ -443,12 +489,9 @@ function generisiNokautPanele() {
     document.getElementById('panel-pf').innerHTML = napraviHtmlZaKategoriju("Polufinale");
     
     let finaleHtml = "";
-    
     finaleHtml += `<h4 class="text-center my-3 fw-bold text-uppercase" style="color: #a0aec0; letter-spacing: 1px;">Utakmica za treće mjesto</h4>`;
     finaleHtml += napraviHtmlZaKategoriju("Trece Mjesto");
-    
     finaleHtml += `<div class="my-4"></div>`;
-    
     finaleHtml += `<h4 class="text-center my-3 fw-bold text-uppercase" style="color: #d4af37; letter-spacing: 1px;">Finalna utakmica</h4>`;
     finaleHtml += napraviHtmlZaKategoriju("Finale");
     
@@ -461,7 +504,6 @@ function napraviHtmlZaKategoriju(kategorija) {
 
     turnir.Nokaut[kategorija].forEach(u => {
         const isNereseno = (u.golDomacin !== "" && u.golGost !== "" && parseInt(u.golDomacin) === parseInt(u.golGost));
-        
         let pobjednikId = "";
         if (parseInt(u.golDomacin) > parseInt(u.golGost)) pobjednikId = "d";
         else if (parseInt(u.golDomacin) < parseInt(u.golGost)) pobjednikId = "g";
@@ -472,8 +514,6 @@ function napraviHtmlZaKategoriju(kategorija) {
 
         const klasaD = pobjednikId === "d" ? "winner-highlight" : "";
         const klasaG = pobjednikId === "g" ? "winner-highlight" : "";
-
-        // Sakrij unos rezultata u Nokautu ako timovi još uvijek nisu poznati (npr. piše "A1" ili je prazno)
         const daLiJeMecSpreman = u.domacin !== "" && u.domacin !== null && !u.domacin.match(/^[A-H][1-2]$/) && !u.domacin.startsWith("Pobjednik") && !u.domacin.startsWith("Poraženi");
 
         ispisHtml += `
@@ -499,7 +539,6 @@ function napraviHtmlZaKategoriju(kategorija) {
                 <div class="penalty-box text-center">
                     <div class="penalty-title mb-1">⚽ PENALI</div>
             `;
-            
             if (isAdmin) {
                 ispisHtml += `
                     <div class="d-flex justify-content-center align-items-center my-2">
@@ -518,15 +557,120 @@ function napraviHtmlZaKategoriju(kategorija) {
             } else if (!isAdmin) {
                 ispisHtml += `<div class="text-warning small fw-bold mt-1">Čeka se izvođenje penala...</div>`;
             }
-            
             ispisHtml += `</div>`;
         }
-
         ispisHtml += `</div>`;
     });
     return ispisHtml;
 }
 
+// =========================================================================
+// LOGIKA ZA STRANICU SA STRIJELCIMA
+// =========================================================================
+function prikaziStrijelce() {
+    const telo = document.getElementById('tabelaStrijelacaTelo');
+    telo.innerHTML = "";
+
+    // Sortiranje strijelaca silazno po broju golova
+    const sortiraniStrijelci = Object.keys(strijelci).map(id => ({
+        id: id,
+        ime: strijelci[id].ime,
+        ekipa: strijelci[id].ekipa,
+        golovi: parseInt(strijelci[id].golovi || 0)
+    })).sort((a, b) => b.golovi - a.golovi);
+
+    telo.innerHTML = `
+        <tr>
+            <td colspan="${isAdmin ? 5 : 4}" class="text-center py-2" style="background: rgba(212, 175, 55, 0.1); border-bottom: 1px solid #233554;">
+                <span style="color: #d4af37; font-weight: 600; font-size: 0.85rem;">⚠️ NAPOMENA: Strijelci se unose i prate tek od nokaut faze turnira!</span>
+            </td>
+        </tr>
+    `;
+
+    if (sortiraniStrijelci.length === 0) {
+        telo.innerHTML += `<tr><td colspan="${isAdmin ? 5 : 4}" class="text-center text-muted py-3">Nema unesenih strijelaca.</td></tr>`;
+        return;
+    }
+
+    sortiraniStrijelci.forEach((s, index) => {
+        let akcijeHtml = "";
+        if (isAdmin) {
+            akcijeHtml = `
+                <td id="tdAkcije-${s.id}">
+                    <button class="btn btn-sm btn-success fw-bold px-2 py-0" onclick="promijeniGoloveStrijelcu('${s.id}', 1)">+</button>
+                    <button class="btn btn-sm btn-danger fw-bold px-2 py-0 ms-1" onclick="promijeniGoloveStrijelcu('${s.id}', -1)">-</button>
+                    <button class="btn btn-sm btn-outline-danger border-0 p-0 ms-2 small" onclick="obrisiStrijelcaBaza('${s.id}')" title="Obriši">❌</button>
+                </td>
+            `;
+        }
+
+        telo.innerHTML += `
+            <tr>
+                <td><strong>${index + 1}</strong></td>
+                <td class="text-start fw-bold">${s.ime}</td>
+                <td class="text-start text-muted">${s.ekipa}</td>
+                <td class="fw-bold" style="color: #d4af37; font-size: 1.1rem;">${s.golovi}</td>
+                ${akcijeHtml}
+            </tr>
+        `;
+    });
+}
+
+function dodajNovogStrijelcaBaza() {
+    if (!isAdmin) return;
+    const imePolje = document.getElementById('noviStrijelacIme');
+    const ekipaPolje = document.getElementById('noviStrijelacEkipa');
+    
+    const ime = imePolje.value.trim();
+    const ekipa = ekipaPolje.value.trim();
+
+    if (ime === "" || ekipa === "") {
+        alert("Moraš unijeti i ime igrača i ekipu!");
+        return;
+    }
+
+    const noviStrijelac = {
+        ime: ime,
+        ekipa: ekipa,
+        golovi: 1 // Početni broj golova pri unosu
+    };
+
+    if (FIREBASE_URL !== "TVOJ_FIREBASE_URL_LINK_OVDJE/") {
+        fetch(FIREBASE_URL + 'strelci.json', {
+            method: 'POST',
+            body: JSON.stringify(noviStrijelac)
+        }).then(() => {
+            imePolje.value = "";
+            ekipaPolje.value = "";
+            pokreniSinhronizaciju();
+        });
+    }
+}
+
+function promijeniGoloveStrijelcu(id, promjena) {
+    if (!isAdmin) return;
+    let noviBrojGolova = (parseInt(strijelci[id].golovi || 0)) + promjena;
+    if (noviBrojGolova < 0) noviBrojGolova = 0;
+
+    if (FIREBASE_URL !== "TVOJ_FIREBASE_URL_LINK_OVDJE/") {
+        fetch(`${FIREBASE_URL}strelci/${id}/golovi.json`, {
+            method: 'PUT',
+            body: JSON.stringify(noviBrojGolova)
+        }).then(() => pokreniSinhronizaciju());
+    }
+}
+
+function obrisiStrijelcaBaza(id) {
+    if (isAdmin && confirm("Da li sigurno želiš obrisati ovog igrača sa liste?")) {
+        fetch(`${FIREBASE_URL}strelci/${id}.json`, {
+            method: 'DELETE'
+        }).then(() => pokreniSinhronizaciju());
+    }
+}
+
+// =========================================================================
+// ADMIN PRIJAVA I AUTENTIFIKACIJA
+// =========================================================================
 async function sha256(message) {
     const msgBuffer = new TextEncoder().encode(message);                    
     const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
@@ -545,7 +689,6 @@ async function adminPrijava() {
     }
     const lozinka = prompt("Unesi lozinku za administraciju:");
     if (lozinka !== null) {
-        // Tokom lokalnog testiranja dozvoljavamo i direktan unos teksta
         const uneseniHash = await sha256(lozinka);
         if (uneseniHash === ADMIN_HASH || lozinka === "gaslo1234") {
             isAdmin = true;
