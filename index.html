@@ -1,8 +1,3 @@
-
-Abdulah Secunovic <abdulahphoto96@gmail.com>
-11:25 PM (0 minutes ago)
-to me
-
 <!DOCTYPE html>
 <html lang="bs">
 <head>
@@ -21,25 +16,36 @@ to me
             background: linear-gradient(135deg, #1e3a8a 0%, #0d1b2a 100%);
             border-bottom: 3px solid #d4af37;
             padding: 20px 10px;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             text-align: center;
             border-radius: 0 0 15px 15px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.5);
         }
-        .header-banner h1 { 
-            font-size: 1.8rem; 
-            font-weight: 800; 
-            color: #fff; 
-            margin: 0;
+        .header-banner h1 { font-size: 1.8rem; font-weight: 800; color: #fff; margin: 0; text-transform: uppercase; letter-spacing: 1px; }
+        .header-banner h2 { font-size: 1.1rem; color: #d4af37; margin: 5px 0 0 0; font-weight: 600; }
+        
+        .faza-nav {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .btn-faza {
+            background: #162238;
+            color: #a0aec0;
+            border: 1px solid #233554;
+            font-weight: 700;
+            padding: 10px 20px;
+            border-radius: 8px;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            font-size: 0.9rem;
         }
-        .header-banner h2 { 
-            font-size: 1.1rem; 
-            color: #d4af37; 
-            margin: 5px 0 0 0;
-            font-weight: 600;
+        .btn-faza.active {
+            background: #d4af37;
+            color: #0b111e;
+            border-color: #d4af37;
         }
+
         .nav-pills {
             background: #162238;
             padding: 5px;
@@ -51,71 +57,29 @@ to me
             -webkit-overflow-scrolling: touch;
         }
         .nav-pills .nav-item { flex: 0 0 auto; }
-        .nav-link {
-            color: #a0aec0;
-            font-weight: 600;
-            border-radius: 8px !important;
-            padding: 8px 16px;
-            white-space: nowrap;
-            border: none;
-            background: transparent;
-        }
-        .nav-link.active {
-            background-color: #d4af37 !important;
-            color: #0b111e !important;
-        }
-        .card { 
-            background: #162238; 
-            border: 1px solid #233554;
-            border-radius: 12px;
-            margin-bottom: 20px; 
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3); 
-        }
-        .card-title {
-            color: #d4af37;
-            font-weight: 700;
-            border-bottom: 1px solid #233554;
-            padding-bottom: 10px;
-            font-size: 1.1rem;
-        }
+        .nav-link { color: #a0aec0; font-weight: 600; border-radius: 8px !important; padding: 8px 16px; white-space: nowrap; border: none; background: transparent; }
+        .nav-link.active { background-color: #d4af37 !important; color: #0b111e !important; }
+        
+        .card { background: #162238; border: 1px solid #233554; border-radius: 12px; margin-bottom: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
+        .card-title { color: #d4af37; font-weight: 700; border-bottom: 1px solid #233554; padding-bottom: 10px; font-size: 1.1rem; text-transform: uppercase; }
+        
         .table { color: #f8f9fa; margin-bottom: 0; }
         .table-striped tbody tr:nth-of-type(odd) { background-color: rgba(255,255,255,0.03); }
         .table-hover tbody tr:hover { color: #fff; background-color: rgba(212,175,55,0.1); }
-        .match-row { 
-            align-items: center; 
-            background: #1d2d44; 
-            padding: 12px 5px; 
-            border-radius: 8px; 
-            margin-bottom: 10px; 
-            border-left: 4px solid #d4af37;
-        }
-        .score-input { 
-            width: 48px; 
-            text-align: center; 
-            font-weight: bold; 
-            background-color: #0b111e !important;
-            color: #fff !important;
-            border: 1px solid #4a5568 !important;
-            padding: 4px;
-        }
-        .score-input:disabled {
-            background-color: #162238 !important;
-            border: 1px solid #233554 !important;
-            color: #a0aec0 !important;
-        }
+        
+        .match-row { align-items: center; background: #1d2d44; padding: 12px 5px; border-radius: 8px; margin-bottom: 5px; border-left: 4px solid #d4af37; }
+        .score-input { width: 48px; text-align: center; font-weight: bold; background-color: #0b111e !important; color: #fff !important; border: 1px solid #4a5568 !important; padding: 4px; }
+        .score-input:disabled { background-color: #162238 !important; border: 1px solid #233554 !important; color: #a0aec0 !important; }
+        
         .match-team-name { font-size: 0.85rem; font-weight: 600; color: #d4af37; }
         .team-name { font-size: 0.85rem; font-weight: 600; }
         .table-responsive th { font-size: 0.8rem; color: #a0aec0; text-transform: uppercase; }
         .table-responsive td { font-size: 0.9rem; }
-        .admin-badge {
-            background-color: #28a745;
-            color: white;
-            padding: 4px 10px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            display: inline-block;
-            margin-bottom: 15px;
-        }
+        
+        .admin-badge { background-color: #28a745; color: white; padding: 4px 10px; border-radius: 20px; font-size: 0.8rem; display: inline-block; margin-bottom: 5px; }
+        .winner-highlight { color: #28a745 !important; font-weight: 800 !important; }
+        .penalty-box { background: rgba(0, 0, 0, 0.25); border-radius: 8px; padding: 10px; margin-top: 8px; border: 1px dashed #d4af37; }
+        .penalty-title { font-size: 0.75rem; color: #d4af37; font-weight: 800; letter-spacing: 1px; }
     </style>
 </head>
 <body>
@@ -127,9 +91,38 @@ to me
 </div>
 
 <div class="container-fluid px-3">
-    <ul class="nav nav-pills mb-4" id="groupTabs" role="tablist"></ul>
+    <div class="faza-nav">
+        <button class="btn-faza active" id="btnGrupna" onclick="promijeniFazu('grupna')">Grupna Faza</button>
+        <button class="btn-faza" id="btnNokaut" onclick="promijeniFazu('nokaut')">Nokaut Faza</button>
+    </div>
 
-    <div class="tab-content" id="groupTabsContent"></div>
+    <div id="sekcijaGrupna">
+        <ul class="nav nav-pills mb-4" id="groupTabs" role="tablist"></ul>
+        <div class="tab-content" id="groupTabsContent"></div>
+    </div>
+
+    <div id="sekcijaNokaut" class="d-none">
+        <ul class="nav nav-pills mb-4" id="nokautTabs" role="tablist">
+            <li class="nav-item">
+                <button class="nav-link active" id="tab-of" data-bs-toggle="pill" data-bs-target="#panel-of" type="button" role="tab" onclick="trenutnaNokautKategorija='Osmina Finala'">Osmina</button>
+            </li>
+            <li class="nav-item">
+                <button class="nav-link" id="tab-cf" data-bs-toggle="pill" data-bs-target="#panel-cf" type="button" role="tab" onclick="trenutnaNokautKategorija='Cetvrtfinale'">Četvrtfinale</button>
+            </li>
+            <li class="nav-item">
+                <button class="nav-link" id="tab-pf" data-bs-toggle="pill" data-bs-target="#panel-pf" type="button" role="tab" onclick="trenutnaNokautKategorija='Polufinale'">Polufinale</button>
+            </li>
+            <li class="nav-item">
+                <button class="nav-link" id="tab-fn" data-bs-toggle="pill" data-bs-target="#panel-fn" type="button" role="tab" onclick="trenutnaNokautKategorija='Finale'">Finale</button>
+            </li>
+        </ul>
+        <div class="tab-content" id="nokautTabsContent">
+            <div class="tab-pane fade show active" id="panel-of" role="tabpanel"></div>
+            <div class="tab-pane fade" id="panel-cf" role="tabpanel"></div>
+            <div class="tab-pane fade" id="panel-pf" role="tabpanel"></div>
+            <div class="tab-pane fade" id="panel-fn" role="tabpanel"></div>
+        </div>
+    </div>
     
     <div class="text-center mt-5 pt-4 border-top border-secondary">
         <button id="btnPrijava" class="btn btn-sm btn-outline-secondary" onclick="adminPrijava()">Admin Prijava</button>
@@ -141,94 +134,64 @@ to me
 // =========================================================================
 // POSTAVKE ZA TVOJ TURNIR (KOPIRAJ LINK IZ FIREBASE-A OVDJE)
 // =========================================================================
-const FIREBASE_URL = "https://bistrica2026-default-rtdb.europe-west1.firebasedatabase.app/"; // Obavezno kosa crta na kraju!
-const ADMIN_LOZINKA = "avdoturnir2026"; // Promijeni lozinku za otključavanje unosa
+const FIREBASE_URL = "https://bistrica2026-default-rtdb.europe-west1.firebasedatabase.app/"; 
+const ADMIN_HASH = "7a40ca189be963fa1c52119bb9f3dd90d9894e6bf9d7fb655452d3a776f8e77a"; 
 // =========================================================================
 
 const strukturaTurnira = {
-    "Grupa A": {
-        timovi: ["Nargila bar Mistik 2", "MZ Planinica", "AS Mihko - Oborci", "Gr. radovi Huntić"],
-        utakmice: [
-            { id: "a1", domacin: "Nargila bar Mistik 2", gost: "MZ Planinica", golDomacin: "", golGost: "" },
-            { id: "a2", domacin: "AS Mihko - Oborci", gost: "Gr. radovi Huntić", golDomacin: "", golGost: "" },
-            { id: "a3", domacin: "Nargila bar Mistik 2", gost: "AS Mihko - Oborci", golDomacin: "", golGost: "" },
-            { id: "a4", domacin: "MZ Planinica", gost: "Gr. radovi Huntić", golDomacin: "", golGost: "" },
-            { id: "a5", domacin: "Gr. radovi Huntić", gost: "Nargila bar Mistik 2", golDomacin: "", golGost: "" },
-            { id: "a6", domacin: "MZ Planinica", gost: "AS Mihko - Oborci", golDomacin: "", golGost: "" }
-        ]
-    },
-    "Grupa B": {
-        timovi: ["Zlatni Ljiljani", "Udr. bos. porodica zrtava Mokronoge 92 -95", "Bistrica Veterani", "Bistro"],
-        utakmice: [
-            { id: "b1", domacin: "Zlatni Ljiljani", gost: "Udr. bos. porodica zrtava Mokronoge 92 -95", golDomacin: "", golGost: "" },
-            { id: "b2", domacin: "Bistrica Veterani", gost: "Bistro", golDomacin: "", golGost: "" },
-            { id: "b3", domacin: "Zlatni Ljiljani", gost: "Bistrica Veterani", golDomacin: "", golGost: "" },
-            { id: "b4", domacin: "Udr. bos. porodica zrtava Mokronoge 92 -95", gost: "Bistro", golDomacin: "", golGost: "" },
-            { id: "b5", domacin: "Bistro", gost: "Zlatni Ljiljani", golDomacin: "", golGost: "" },
-            { id: "b6", domacin: "Udr. bos. porodica zrtava Mokronoge 92 -95", gost: "Bistrica Veterani", golDomacin: "", golGost: "" }
-        ]
-    },
-    "Grupa C": {
-        timovi: ["Dedić Namještaj", "Rostovo", "Elektro Pokvić", "Zreli za penziju"],
-        utakmice: [
-            { id: "c1", domacin: "Dedić Namještaj", gost: "Rostovo", golDomacin: "", golGost: "" },
-            { id: "c2", domacin: "Elektro Pokvić", gost: "Zreli za penziju", golDomacin: "", golGost: "" },
-            { id: "c3", domacin: "Dedić Namještaj", gost: "Elektro Pokvić", golDomacin: "", golGost: "" },
-            { id: "c4", domacin: "Rostovo", gost: "Zreli za penziju", golDomacin: "", golGost: "" },
-            { id: "c5", domacin: "Zreli za penziju", gost: "Dedić Namještaj", golDomacin: "", golGost: "" },
-            { id: "c6", domacin: "Rostovo", gost: "Elektro Pokvić", golDomacin: "", golGost: "" }
-        ]
-    },
-    "Grupa D": {
-        timovi: ["70230 Bugojno", "UG Grnica", "BNT i TMIH", "Voljice"],
-        utakmice: [
-            { id: "d1", domacin: "70230 Bugojno", gost: "UG Grnica", golDomacin: "", golGost: "" },
-            { id: "d2", domacin: "BNT i TMIH", gost: "Voljice", golDomacin: "", golGost: "" },
-            { id: "d3", domacin: "70230 Bugojno", gost: "BNT i TMIH", golDomacin: "", golGost: "" },
-            { id: "d4", domacin: "UG Grnica", gost: "Voljice", golDomacin: "", golGost: "" },
-            { id: "d5", domacin: "Voljice", gost: "70230 Bugojno", golDomacin: "", golGost: "" },
-            { id: "d6", domacin: "UG Grnica", gost: "BNT i TMIH", golDomacin: "", golGost: "" }
-        ]
-    },
-    "Grupa E": {
-        timovi: ["Elektra Omerinović", "Nargila bar Mistik", "Makljen Prozor"],
-        utakmice: [
-            { id: "e1", domacin: "Elektra Omerinović", gost: "Nargila bar Mistik", golDomacin: "", golGost: "" },
-            { id: "e2", domacin: "Elektra Omerinović", gost: "Makljen Prozor", golDomacin: "", golGost: "" },
-            { id: "e3", domacin: "Nargila bar Mistik", gost: "Makljen Prozor", golDomacin: "", golGost: "" }
-        ]
-    },
-    "Grupa F": {
-        timovi: ["Privor Omladinci", "Crvenkapice", "SUR LMA"],
-        utakmice: [
-            { id: "f1", domacin: "Privor Omladinci", gost: "Crvenkapice", golDomacin: "", golGost: "" },
-            { id: "f2", domacin: "Privor Omladinci", gost: "SUR LMA", golDomacin: "", golGost: "" },
-            { id: "f3", domacin: "Crvenkapice", gost: "SUR LMA", golDomacin: "", golGost: "" }
-        ]
-    },
-    "Grupa G": {
-        timovi: ["Sahat Kula", "Meša Flex", "Apollo"],
-        utakmice: [
-            { id: "g1", domacin: "Sahat Kula", gost: "Meša Flex", golDomacin: "", golGost: "" },
-            { id: "g2", domacin: "Sahat Kula", gost: "Apollo", golDomacin: "", golGost: "" },
-            { id: "g3", domacin: "Meša Flex", gost: "Apollo", golDomacin: "", golGost: "" }
-        ]
-    },
-    "Grupa H": {
-        timovi: ["UG Voljice", "Caffe bar Bakšiš", "PVC Stolarija"],
-        utakmice: [
-            { id: "h1", domacin: "UG Voljice", gost: "Caffe bar Bakšiš", golDomacin: "", golGost: "" },
-            { id: "h2", domacin: "UG Voljice", gost: "PVC Stolarija", golDomacin: "", golGost: "" },
-            { id: "h3", domacin: "Caffe bar Bakšiš", gost: "PVC Stolarija", golDomacin: "", golGost: "" }
+    "Grupa A": { timovi: ["Nargila bar Mistik 2", "MZ Planinica", "AS Mihko - Oborci", "Gr. radovi Huntić"], utakmice: [{ id: "a1", domacin: "Nargila bar Mistik 2", gost: "MZ Planinica", golDomacin: "", golGost: "" }, { id: "a2", domacin: "AS Mihko - Oborci", gost: "Gr. radovi Huntić", golDomacin: "", golGost: "" }, { id: "a3", domacin: "Nargila bar Mistik 2", gost: "AS Mihko - Oborci", golDomacin: "", golGost: "" }, { id: "a4", domacin: "MZ Planinica", gost: "Gr. radovi Huntić", golDomacin: "", golGost: "" }, { id: "a5", domacin: "Gr. radovi Huntić", gost: "Nargila bar Mistik 2", golDomacin: "", golGost: "" }, { id: "a6", domacin: "MZ Planinica", gost: "AS Mihko - Oborci", golDomacin: "", golGost: "" }] },
+    "Grupa B": { timovi: ["Zlatni Ljiljani", "Udr. bos. porodica zrtava Mokronoge 92 -95", "Bistrica Veterani", "Bistro"], utakmice: [{ id: "b1", domacin: "Zlatni Ljiljani", gost: "Udr. bos. porodica zrtava Mokronoge 92 -95", golDomacin: "", golGost: "" }, { id: "b2", domacin: "Bistrica Veterani", gost: "Bistro", golDomacin: "", golGost: "" }, { id: "b3", domacin: "Zlatni Ljiljani", gost: "Bistrica Veterani", golDomacin: "", golGost: "" }, { id: "b4", domacin: "Udr. bos. porodica zrtava Mokronoge 92 -95", gost: "Bistro", golDomacin: "", golGost: "" }, { id: "b5", domacin: "Bistro", gost: "Zlatni Ljiljani", golDomacin: "", golGost: "" }, { id: "b6", domacin: "Udr. bos. porodica zrtava Mokronoge 92 -95", gost: "Bistrica Veterani", golDomacin: "", golGost: "" }] },
+    "Grupa C": { timovi: ["Dedić Namještaj", "Rostovo", "Elektro Pokvić", "Zreli za penziju"], utakmice: [{ id: "c1", domacin: "Dedić Namještaj", gost: "Rostovo", golDomacin: "", golGost: "" }, { id: "c2", domacin: "Elektro Pokvić", gost: "Zreli za penziju", golDomacin: "", golGost: "" }, { id: "c3", domacin: "Dedić Namještaj", gost: "Elektro Pokvić", golDomacin: "", golGost: "" }, { id: "c4", domacin: "Rostovo", gost: "Zreli za penziju", golDomacin: "", golGost: "" }, { id: "c5", domacin: "Zreli za penziju", gost: "Dedić Namještaj", golDomacin: "", golGost: "" }, { id: "c6", domacin: "Rostovo", gost: "Elektro Pokvić", golDomacin: "", golGost: "" }] },
+    "Grupa D": { timovi: ["70230 Bugojno", "UG Grnica", "BNT i TMIH", "Voljice"], utakmice: [{ id: "d1", domacin: "70230 Bugojno", gost: "UG Grnica", golDomacin: "", golGost: "" }, { id: "d2", domacin: "BNT i TMIH", gost: "Voljice", golDomacin: "", golGost: "" }, { id: "d3", domacin: "70230 Bugojno", gost: "BNT i TMIH", golDomacin: "", golGost: "" }, { id: "d4", domacin: "UG Grnica", gost: "Voljice", golDomacin: "", golGost: "" }, { id: "d5", domacin: "Voljice", gost: "70230 Bugojno", golDomacin: "", golGost: "" }, { id: "d6", domacin: "UG Grnica", gost: "BNT i TMIH", golDomacin: "", golGost: "" }] },
+    "Grupa E": { timovi: ["Elektra Omerinović", "Nargila bar Mistik", "Makljen Prozor"], utakmice: [{ id: "e1", domacin: "Elektra Omerinović", gost: "Nargila bar Mistik", golDomacin: "", golGost: "" }, { id: "e2", domacin: "Elektra Omerinović", gost: "Makljen Prozor", golDomacin: "", golGost: "" }, { id: "e3", domacin: "Nargila bar Mistik", gost: "Makljen Prozor", golDomacin: "", golGost: "" }] },
+    "Grupa F": { timovi: ["Privor Omladinci", "Crvenkapice", "SUR LMA"], utakmice: [{ id: "f1", domacin: "Privor Omladinci", gost: "Crvenkapice", golDomacin: "", golGost: "" }, { id: "f2", domacin: "Privor Omladinci", gost: "SUR LMA", golDomacin: "", golGost: "" }, { id: "f3", domacin: "Crvenkapice", gost: "SUR LMA", golDomacin: "", golGost: "" }] },
+    "Grupa G": { timovi: ["Sahat Kula", "Meša Flex", "Apollo"], utakmice: [{ id: "g1", domacin: "Sahat Kula", gost: "Meša Flex", golDomacin: "", golGost: "" }, { id: "g2", domacin: "Sahat Kula", gost: "Apollo", golDomacin: "", golGost: "" }, { id: "g3", domacin: "Meša Flex", gost: "Apollo", golDomacin: "", golGost: "" }] },
+    "Grupa H": { timovi: ["UG Voljice", "Caffe bar Bakšiš", "PVC Stolarija"], utakmice: [{ id: "h1", domacin: "UG Voljice", gost: "Caffe bar Bakšiš", golDomacin: "", golGost: "" }, { id: "h2", domacin: "UG Voljice", gost: "PVC Stolarija", golDomacin: "", golGost: "" }, { id: "h3", domacin: "Caffe bar Bakšiš", gost: "PVC Stolarija", golDomacin: "", golGost: "" }] },
+    "Nokaut": {
+        "Osmina Finala": [
+            { id: "of1", oznakaD: "A1", oznakaG: "B2", domacin: "", gost: "", golDomacin: "", golGost: "", penaliDomacin: "", penaliGost: "" },
+            { id: "of2", oznakaD: "B1", oznakaG: "A2", domacin: "", gost: "", golDomacin: "", golGost: "", penaliDomacin: "", penaliGost: "" },
+            { id: "of3", oznakaD: "C1", oznakaG: "D2", domacin: "", gost: "", golDomacin: "", golGost: "", penaliDomacin: "", penaliGost: "" },
+            { id: "of4", oznakaD: "D1", oznakaG: "C2", domacin: "", gost: "", golDomacin: "", golGost: "", penaliDomacin: "", penaliGost: "" },
+            { id: "of5", oznakaD: "E1", oznakaG: "F2", domacin: "", gost: "", golDomacin: "", golGost: "", penaliDomacin: "", penaliGost: "" },
+            { id: "of6", oznakaD: "F1", oznakaG: "E2", domacin: "", gost: "", golDomacin: "", golGost: "", penaliDomacin: "", penaliGost: "" },
+            { id: "of7", oznakaD: "G1", oznakaG: "H2", domacin: "", gost: "", golDomacin: "", golGost: "", penaliDomacin: "", penaliGost: "" },
+            { id: "of8", oznakaD: "H1", oznakaG: "G2", domacin: "", gost: "", golDomacin: "", golGost: "", penaliDomacin: "", penaliGost: "" }
+        ],
+        "Cetvrtfinale": [
+            { id: "q1", naslov: "Četvrtfinale 1 (Q1)", domacin: "Pobjednik OF1", gost: "Pobjednik OF2", golDomacin: "", golGost: "", penaliDomacin: "", penaliGost: "" },
+            { id: "q2", naslov: "Četvrtfinale 2 (Q2)", domacin: "Pobjednik OF3", gost: "Pobjednik OF4", golDomacin: "", golGost: "", penaliDomacin: "", penaliGost: "" },
+            { id: "q3", naslov: "Četvrtfinale 3 (Q3)", domacin: "Pobjednik OF5", gost: "Pobjednik OF6", golDomacin: "", golGost: "", penaliDomacin: "", penaliGost: "" },
+            { id: "q4", naslov: "Četvrtfinale 4 (Q4)", domacin: "Pobjednik OF7", gost: "Pobjednik OF8", golDomacin: "", golGost: "", penaliDomacin: "", penaliGost: "" }
+        ],
+        "Polufinale": [
+            { id: "s1", naslov: "Polufinale 1 (S1)", domacin: "Pobjednik Q1", gost: "Pobjednik Q2", golDomacin: "", golGost: "", penaliDomacin: "", penaliGost: "" },
+            { id: "s2", naslov: "Polufinale 2 (S2)", domacin: "Pobjednik Q3", gost: "Pobjednik Q4", golDomacin: "", golGost: "", penaliDomacin: "", penaliGost: "" }
+        ],
+        "Trece Mjesto": [
+            { id: "trece", domacin: "Poraženi S1", gost: "Poraženi S2", golDomacin: "", golGost: "", penaliDomacin: "", penaliGost: "" }
+        ],
+        "Finale": [
+            { id: "finale", domacin: "Pobjednik S1", gost: "Pobjednik S2", golDomacin: "", golGost: "", penaliDomacin: "", penaliGost: "" }
         ]
     }
 };
 
 let turnir = {};
 let trenutnoAktivnaGrupaIndex = 0;
+let trenutnaFaza = "grupna";
+let trenutnaNokautKategorija = "Osmina Finala";
 let isAdmin = false;
 
-// Funkcija koja povlači podatke sa interneta (Firebase) svakih nekoliko sekundi
+function promijeniFazu(faza) {
+    trenutnaFaza = faza;
+    document.getElementById('btnGrupna').classList.toggle('active', faza === 'grupna');
+    document.getElementById('btnNokaut').classList.toggle('active', faza === 'nokaut');
+    document.getElementById('sekcijaGrupna').classList.toggle('d-none', faza !== 'grupna');
+    document.getElementById('sekcijaNokaut').classList.toggle('d-none', faza !== 'nokaut');
+    prikaziSve();
+}
+
 function pokreniSinhronizaciju() {
     if (FIREBASE_URL === "TVOJ_FIREBASE_URL_LINK_OVDJE/") {
         turnir = JSON.parse(JSON.stringify(strukturaTurnira));
@@ -241,65 +204,130 @@ function pokreniSinhronizaciju() {
     .then(data => {
         if (data) {
             turnir = data;
+            if(!turnir.Nokaut) turnir.Nokaut = JSON.parse(JSON.stringify(strukturaTurnira.Nokaut));
         } else {
-            // Ako je baza prazna, postavi početnu strukturu
-            fetch(FIREBASE_URL + 'turnir.json', {
-                method: 'PUT',
-                body: JSON.stringify(strukturaTurnira)
-            });
+            fetch(FIREBASE_URL + 'turnir.json', { method: 'PUT', body: JSON.stringify(strukturaTurnira) });
             turnir = JSON.parse(JSON.stringify(strukturaTurnira));
         }
+        osvjeziImenaUNokautu();
         prikaziSve();
     }).catch(err => console.error("Greška pri sinhronizaciji:", err));
+}
+
+function provjeriDaLiJeGrupaZavrsena(imeGrupe) {
+    const grupa = turnir[imeGrupe];
+    if(!grupa || !grupa.utakmice) return false;
+    
+    // Odredi potreban broj utakmica na osnovu broja timova u grupi
+    const ocekivaniBrojUtakmica = grupa.timovi.length === 3 ? 3 : 6;
+    
+    let odigranoMeca = 0;
+    grupa.utakmice.forEach(utakmica => {
+        if (utakmica.golDomacin !== "" && utakmica.golGost !== "" && utakmica.golDomacin !== null && utakmica.golGost !== null) {
+            odigranoMeca++;
+        }
+    });
+    
+    return odigranoMeca === ocekivaniBrojUtakmica;
 }
 
 function izracunajTabelu(imeGrupe) {
     const grupa = turnir[imeGrupe];
     let tabela = {};
     if(!grupa || !grupa.timovi) return [];
-
-    grupa.timovi.forEach(tim => {
-        tabela[tim] = { ime: tim, odigrano: 0, pobjede: 0, remiji: 0, porazi: 0, dg: 0, pg: 0, bodovi: 0 };
-    });
-
+    grupa.timovi.forEach(tim => { tabela[tim] = { ime: tim, odigrano: 0, pobjede: 0, remiji: 0, porazi: 0, dg: 0, pg: 0, bodovi: 0 }; });
     if(grupa.utakmice) {
         grupa.utakmice.forEach(utakmica => {
             if (utakmica.golDomacin !== "" && utakmica.golGost !== "" && utakmica.golDomacin !== null && utakmica.golGost !== null) {
-                const gd = parseInt(utakmica.golDomacin);
-                const gg = parseInt(utakmica.golGost);
-
-                tabela[utakmica.domacin].odigrano++;
-                tabela[utakmica.gost].odigrano++;
-                tabela[utakmica.domacin].dg += gd;
-                tabela[utakmica.domacin].pg += gg;
-                tabela[utakmica.gost].dg += gg;
-                tabela[utakmica.gost].pg += gd;
-
-                if (gd > gg) {
-                    tabela[utakmica.domacin].pobjede++;
-                    tabela[utakmica.domacin].bodovi += 3;
-                    tabela[utakmica.gost].porazi++;
-                } else if (gd < gg) {
-                    tabela[utakmica.gost].pobjede++;
-                    tabela[utakmica.gost].bodovi += 3;
-                    tabela[utakmica.domacin].porazi++;
-                } else {
-                    tabela[utakmica.domacin].remiji++;
-                    tabela[utakmica.gost].remiji++;
-                    tabela[utakmica.domacin].bodovi += 1;
-                    tabela[utakmica.gost].bodovi += 1;
-                }
+                const gd = parseInt(utakmica.golDomacin); const gg = parseInt(utakmica.golGost);
+                tabela[utakmica.domacin].odigrano++; tabela[utakmica.gost].odigrano++;
+                tabela[utakmica.domacin].dg += gd; tabela[utakmica.domacin].pg += gg;
+                tabela[utakmica.gost].dg += gg; tabela[utakmica.gost].pg += gd;
+                if (gd > gg) { tabela[utakmica.domacin].pobjede++; tabela[utakmica.domacin].bodovi += 3; tabela[utakmica.gost].porazi++; }
+                else if (gd < gg) { tabela[utakmica.gost].pobjede++; tabela[utakmica.gost].bodovi += 3; tabela[utakmica.domacin].porazi++; }
+                else { tabela[utakmica.domacin].remiji++; tabela[utakmica.gost].remiji++; tabela[utakmica.domacin].bodovi += 1; tabela[utakmica.gost].bodovi += 1; }
             }
         });
     }
-
     return Object.values(tabela).sort((a, b) => {
         if (b.bodovi !== a.bodovi) return b.bodovi - a.bodovi;
-        const grA = a.dg - a.pg;
-        const grB = b.dg - b.pg;
+        const grA = a.dg - a.pg; const grB = b.dg - b.pg;
         if (grB !== grA) return grB - grA;
         return b.dg - a.dg;
     });
+}
+
+function osvjeziImenaUNokautu() {
+    let lideri = {};
+    Object.keys(turnir).forEach(kljuc => {
+        if(kljuc.startsWith("Grupa ")) {
+            const oznaka = kljuc.replace("Grupa ", "");
+            
+            // POPRAVLJENO: Povuci timove samo ako je grupa u potpunosti završena
+            if (provjeriDaLiJeGrupaZavrsena(kljuc)) {
+                const tab = izracunajTabelu(kljuc);
+                lideri[oznaka + "1"] = tab[0] ? tab[0].ime : "";
+                lideri[oznaka + "2"] = tab[1] ? tab[1].ime : "";
+            } else {
+                lideri[oznaka + "1"] = "";
+                lideri[oznaka + "2"] = "";
+            }
+        }
+    });
+
+    const of = turnir.Nokaut["Osmina Finala"];
+    of[0].domacin = lideri["A1"] || "A1"; of[0].gost = lideri["B2"] || "B2";
+    of[1].domacin = lideri["B1"] || "B1"; of[1].gost = lideri["A2"] || "A2";
+    of[2].domacin = lideri["C1"] || "C1"; of[2].gost = lideri["D2"] || "D2";
+    of[3].domacin = lideri["D1"] || "D1"; of[3].gost = lideri["C2"] || "C2";
+    of[4].domacin = lideri["E1"] || "E1"; of[4].gost = lideri["F2"] || "F2";
+    of[5].domacin = lideri["F1"] || "F1"; of[5].gost = lideri["E2"] || "E2";
+    of[6].domacin = lideri["G1"] || "G1"; of[6].gost = lideri["H2"] || "H2";
+    of[7].domacin = lideri["H1"] || "H1"; of[7].gost = lideri["G2"] || "G2";
+
+    const nadjiPobjednika = (u) => {
+        if(u.golDomacin === "" || u.golGost === "" || u.domacin === "A1" || u.domacin.startsWith("Pobjednik") || u.domacin === "") return "";
+        const gd = parseInt(u.golDomacin); const gg = parseInt(u.golGost);
+        if (gd > gg) return u.domacin;
+        if (gd < gg) return u.gost;
+        
+        if (u.penaliDomacin !== "" && u.penaliGost !== "" && u.penaliDomacin !== null && u.penaliGost !== null) {
+            const pd = parseInt(u.penaliDomacin); const pg = parseInt(u.penaliGost);
+            if (pd > pg) return u.domacin;
+            if (pd < pg) return u.gost;
+        }
+        return "";
+    };
+
+    const nadjiPorazenog = (u) => {
+        if(u.golDomacin === "" || u.golGost === "" || u.domacin === "A1" || u.domacin.startsWith("Pobjednik") || u.domacin === "") return "";
+        const gd = parseInt(u.golDomacin); const gg = parseInt(u.golGost);
+        if (gd > gg) return u.gost;
+        if (gd < gg) return u.domacin;
+        
+        if (u.penaliDomacin !== "" && u.penaliGost !== "" && u.penaliDomacin !== null && u.penaliGost !== null) {
+            const pd = parseInt(u.penaliDomacin); const pg = parseInt(u.penaliGost);
+            if (pd > pg) return u.gost;
+            if (pd < pg) return u.domacin;
+        }
+        return "";
+    };
+
+    const cf = turnir.Nokaut["Cetvrtfinale"];
+    cf[0].domacin = nadjiPobjednika(of[0]) || "Pobjednik OF1"; cf[0].gost = nadjiPobjednika(of[1]) || "Pobjednik OF2";
+    cf[1].domacin = nadjiPobjednika(of[2]) || "Pobjednik OF3"; cf[1].gost = nadjiPobjednika(of[3]) || "Pobjednik OF4";
+    cf[2].domacin = nadjiPobjednika(of[4]) || "Pobjednik OF5"; cf[2].gost = nadjiPobjednika(of[5]) || "Pobjednik OF6";
+    cf[3].domacin = nadjiPobjednika(of[6]) || "Pobjednik OF7"; cf[3].gost = nadjiPobjednika(of[7]) || "Pobjednik OF8";
+
+    const pf = turnir.Nokaut["Polufinale"];
+    pf[0].domacin = nadjiPobjednika(cf[0]) || "Pobjednik Q1"; pf[0].gost = nadjiPobjednika(cf[1]) || "Pobjednik Q2";
+    pf[1].domacin = nadjiPobjednika(cf[2]) || "Pobjednik Q3"; pf[1].gost = nadjiPobjednika(cf[3]) || "Pobjednik Q4";
+
+    turnir.Nokaut["Trece Mjesto"][0].domacin = nadjiPorazenog(pf[0]) || "Poraženi S1";
+    turnir.Nokaut["Trece Mjesto"][0].gost = nadjiPorazenog(pf[1]) || "Poraženi S2";
+    
+    turnir.Nokaut["Finale"][0].domacin = nadjiPobjednika(pf[0]) || "Pobjednik S1";
+    turnir.Nokaut["Finale"][0].gost = nadjiPobjednika(pf[1]) || "Pobjednik S2";
 }
 
 function azurirajRezultat(imeGrupe, utakmicaId, isDomacin, vrijednost, indexGrupe) {
@@ -307,40 +335,54 @@ function azurirajRezultat(imeGrupe, utakmicaId, isDomacin, vrijednost, indexGrup
     trenutnoAktivnaGrupaIndex = indexGrupe;
     const utakmica = turnir[imeGrupe].utakmice.find(u => u.id === utakmicaId);
     if (utakmica) {
-        if (isDomacin) {
-            utakmica.golDomacin = vrijednost === "" ? "" : parseInt(vrijednost);
-        } else {
-            utakmica.golGost = vrijednost === "" ? "" : parseInt(vrijednost);
-        }
-        
-        // Slanje novog rezultata direktno u Firebase bazu
-        prikaziSve(); // Brzi lokalni prikaz
-        fetch(FIREBASE_URL + 'turnir.json', {
-            method: 'PUT',
-            body: JSON.stringify(turnir)
-        });
+        if (isDomacin) { utakmica.golDomacin = vrijednost === "" ? "" : parseInt(vrijednost); }
+        else { utakmica.golGost = vrijednost === "" ? "" : parseInt(vrijednost); }
+        spremiUBazu();
     }
 }
 
-function postaviAktivnuGrupu(index) {
-    trenutnoAktivnaGrupaIndex = index;
+function azurirajNokautRezultat(kategorija, utakmicaId, tipPolja, vrijednost) {
+    if(!isAdmin) return;
+    const utakmica = turnir.Nokaut[kategorija].find(u => u.id === utakmicaId);
+    if(utakmica) {
+        if(tipPolja === 'gd') utakmica.golDomacin = vrijednost === "" ? "" : parseInt(vrijednost);
+        if(tipPolja === 'gg') utakmica.golGost = vrijednost === "" ? "" : parseInt(vrijednost);
+        if(tipPolja === 'pd') utakmica.penaliDomacin = vrijednost === "" ? "" : parseInt(vrijednost);
+        if(tipPolja === 'pg') utakmica.penaliGost = vrijednost === "" ? "" : parseInt(vrijednost);
+        
+        if(utakmica.golDomacin !== utakmica.golGost) {
+            utakmica.penaliDomacin = "";
+            utakmica.penaliGost = "";
+        }
+        spremiUBazu();
+    }
+}
+
+function spremiUBazu() {
+    osvjeziImenaUNokautu();
+    prikaziSve();
+    if (FIREBASE_URL !== "TVOJ_FIREBASE_URL_LINK_OVDJE/") {
+        fetch(FIREBASE_URL + 'turnir.json', { method: 'PUT', body: JSON.stringify(turnir) });
+    }
 }
 
 function prikaziSve() {
+    if(trenutnaFaza === "grupna") { prikaziGrupnuFazu(); } 
+    else { generisiNokautPanele(); }
+}
+
+function prikaziGrupnuFazu() {
     const tabsUl = document.getElementById('groupTabs');
     const contentDiv = document.getElementById('groupTabsContent');
-
-    tabsUl.innerHTML = "";
-    contentDiv.innerHTML = "";
+    tabsUl.innerHTML = ""; contentDiv.innerHTML = "";
 
     Object.keys(turnir).forEach((imeGrupe, indeks) => {
-        const tabId = `tab-${indeks}`;
-        const panelId = `panel-${indeks}`;
-        const isAktivan = indeks === trenutnoAktivnaGrupaIndex;
+        if(!imeGrupe.startsWith("Grupa ")) return;
+        const tabId = `tab-${indeks}`; const panelId = `panel-${indeks}`; const isAktivan = indeks === trenutnoAktivnaGrupaIndex;
 
         tabsUl.innerHTML += `
             <li class="nav-item" role="presentation">
-                <button class="nav-link ${isAktivan ? 'active' : ''}" id="${tabId}" data-bs-toggle="pill" data-bs-target="#${panelId}" type="button" role="tab" onclick="postaviAktivnuGrupu(${indeks})">
+                <button class="nav-link ${isAktivan ? 'active' : ''}" id="${tabId}" data-bs-toggle="pill" data-bs-target="#${panelId}" type="button" role="tab" onclick="trenutnoAktivnaGrupaIndex=${indeks}">
                     ${imeGrupe.replace("Grupa ", "")}
                 </button>
             </li>
@@ -352,24 +394,22 @@ function prikaziSve() {
                 <h5 class="card-title">${imeGrupe} - Tabela</h5>
                 <div class="table-responsive">
                     <table class="table table-striped table-hover text-center align-middle">
-                        <thead>
-                            <tr>
-                                <th>#</th><th class="text-start">Tim</th><th>OU</th><th>P</th><th>N</th><th>I</th><th>GR</th><th>B</th>
-                            </tr>
-                        </thead>
+                        <thead><tr><th>#</th><th class="text-start">Tim</th><th>OU</th><th>P</th><th>N</th><th>I</th><th>GR</th><th>B</th></tr></thead>
                         <tbody>
         `;
 
         sortiranaTabela.forEach((tim, i) => {
-            tabelaHtml += `
-                <tr>
-                    <td>${i + 1}</td>
-                    <td class="text-start fw-bold team-name text-truncate" style="max-width: 140px;">${tim.ime}</td>
-                    <td>${tim.odigrano}</td><td>${tim.pobjede}</td><td>${tim.remiji}</td><td>${tim.porazi}</td>
-                    <td class="${(tim.dg - tim.pg) > 0 ? 'text-success' : (tim.dg - tim.pg) < 0 ? 'text-danger' : ''}">${tim.dg - tim.pg}</td>
-                    <td class="fw-bold" style="color: #d4af37;">${tim.bodovi}</td>
-                </tr>
-            `;
+            if (tim && tim.ime) {
+                tabelaHtml += `
+                    <tr>
+                        <td>${i + 1}</td>
+                        <td class="text-start fw-bold team-name text-truncate" style="max-width: 140px;">${tim.ime}</td>
+                        <td>${tim.odigrano}</td><td>${tim.pobjede}</td><td>${tim.remiji}</td><td>${tim.porazi}</td>
+                        <td class="${(tim.dg - tim.pg) > 0 ? 'text-success' : (tim.dg - tim.pg) < 0 ? 'text-danger' : ''}">${tim.dg - tim.pg}</td>
+                        <td class="fw-bold" style="color: #d4af37;">${tim.bodovi}</td>
+                    </tr>
+                `;
+            }
         });
         tabelaHtml += `</tbody></table></div></div>`;
 
@@ -391,16 +431,110 @@ function prikaziSve() {
         }
         utakmiceHtml += `</div>`;
 
-        contentDiv.innerHTML += `
-            <div class="tab-pane fade ${isAktivan ? 'show active' : ''}" id="${panelId}" role="tabpanel">
-                ${tabelaHtml}
-                ${utakmiceHtml}
-            </div>
-        `;
+        contentDiv.innerHTML += `<div class="tab-pane fade ${isAktivan ? 'show active' : ''}" id="${panelId}" role="tabpanel">${tabelaHtml}${utakmiceHtml}</div>`;
     });
 }
 
-function adminPrijava() {
+function generisiNokautPanele() {
+    if(!turnir.Nokaut) return;
+    
+    document.getElementById('panel-of').innerHTML = napraviHtmlZaKategoriju("Osmina Finala");
+    document.getElementById('panel-cf').innerHTML = napraviHtmlZaKategoriju("Cetvrtfinale");
+    document.getElementById('panel-pf').innerHTML = napraviHtmlZaKategoriju("Polufinale");
+    
+    let finaleHtml = "";
+    
+    finaleHtml += `<h4 class="text-center my-3 fw-bold text-uppercase" style="color: #a0aec0; letter-spacing: 1px;">Utakmica za treće mjesto</h4>`;
+    finaleHtml += napraviHtmlZaKategoriju("Trece Mjesto");
+    
+    finaleHtml += `<div class="my-4"></div>`;
+    
+    finaleHtml += `<h4 class="text-center my-3 fw-bold text-uppercase" style="color: #d4af37; letter-spacing: 1px;">Finalna utakmica</h4>`;
+    finaleHtml += napraviHtmlZaKategoriju("Finale");
+    
+    document.getElementById('panel-fn').innerHTML = finaleHtml;
+}
+
+function napraviHtmlZaKategoriju(kategorija) {
+    let ispisHtml = "";
+    if(!turnir.Nokaut[kategorija]) return "";
+
+    turnir.Nokaut[kategorija].forEach(u => {
+        const isNereseno = (u.golDomacin !== "" && u.golGost !== "" && parseInt(u.golDomacin) === parseInt(u.golGost));
+        
+        let pobjednikId = "";
+        if (parseInt(u.golDomacin) > parseInt(u.golGost)) pobjednikId = "d";
+        else if (parseInt(u.golDomacin) < parseInt(u.golGost)) pobjednikId = "g";
+        else if (isNereseno && u.penaliDomacin !== "" && u.penaliGost !== "") {
+            if (parseInt(u.penaliDomacin) > parseInt(u.penaliGost)) pobjednikId = "d";
+            else if (parseInt(u.penaliDomacin) < parseInt(u.penaliGost)) pobjednikId = "g";
+        }
+
+        const klasaD = pobjednikId === "d" ? "winner-highlight" : "";
+        const klasaG = pobjednikId === "g" ? "winner-highlight" : "";
+
+        // Sakrij unos rezultata u Nokautu ako timovi još uvijek nisu poznati (npr. piše "A1" ili je prazno)
+        const daLiJeMecSpreman = u.domacin !== "" && u.domacin !== null && !u.domacin.match(/^[A-H][1-2]$/) && !u.domacin.startsWith("Pobjednik") && !u.domacin.startsWith("Poraženi");
+
+        ispisHtml += `
+            <div class="card p-3 mb-2">
+                ${u.naslov ? `<div class="fw-bold mb-2 text-muted text-uppercase small">${u.naslov}</div>` : ''}
+                <div class="row match-row d-flex justify-content-between text-center mx-0" style="border-left-color: #1e3a8a;">
+                    <div class="col-4 text-end match-team-name text-truncate px-1 align-self-center ${klasaD}">
+                        ${u.oznakaD && !daLiJeMecSpreman ? `<span class="badge bg-secondary me-1 text-light">${u.oznakaD}</span>` : ''}${u.domacin}
+                    </div>
+                    <div class="col-4 d-flex justify-content-center align-items-center px-1">
+                        <input type="number" class="form-control form-control-sm score-input mx-1" value="${u.golDomacin}" oninput="azurirajNokautRezultat('${kategorija}', '${u.id}', 'gd', this.value)" min="0" inputmode="numeric" ${!isAdmin || !daLiJeMecSpreman ? 'disabled' : ''}>
+                        <span class="fw-bold text-muted">:</span>
+                        <input type="number" class="form-control form-control-sm score-input mx-1" value="${u.golGost}" oninput="azurirajNokautRezultat('${kategorija}', '${u.id}', 'gg', this.value)" min="0" inputmode="numeric" ${!isAdmin || !daLiJeMecSpreman ? 'disabled' : ''}>
+                    </div>
+                    <div class="col-4 text-start match-team-name text-truncate px-1 align-self-center ${klasaG}">
+                        ${u.gost} ${u.oznakaG && !daLiJeMecSpreman ? `<span class="badge bg-secondary ms-1 text-light">${u.oznakaG}</span>` : ''}
+                    </div>
+                </div>
+        `;
+
+        if (isNereseno && daLiJeMecSpreman) {
+            ispisHtml += `
+                <div class="penalty-box text-center">
+                    <div class="penalty-title mb-1">⚽ PENALI</div>
+            `;
+            
+            if (isAdmin) {
+                ispisHtml += `
+                    <div class="d-flex justify-content-center align-items-center my-2">
+                        <span class="small text-muted me-2 text-truncate" style="max-width:90px;">${u.domacin}</span>
+                        <input type="number" class="form-control form-control-sm score-input mx-1" style="border-color:#d4af37 !important;" value="${u.penaliDomacin || ''}" oninput="azurirajNokautRezultat('${kategorija}', '${u.id}', 'pd', this.value)" min="0" inputmode="numeric">
+                        <span class="fw-bold text-warning">:</span>
+                        <input type="number" class="form-control form-control-sm score-input mx-1" style="border-color:#d4af37 !important;" value="${u.penaliGost || ''}" oninput="azurirajNokautRezultat('${kategorija}', '${u.id}', 'pg', this.value)" min="0" inputmode="numeric">
+                        <span class="small text-muted ms-2 text-truncate" style="max-width:90px;">${u.gost}</span>
+                    </div>
+                `;
+            }
+
+            if (u.penaliDomacin !== "" && u.penaliGost !== "" && u.penaliDomacin !== null && u.penaliGost !== null) {
+                const pobTim = parseInt(u.penaliDomacin) > parseInt(u.penaliGost) ? u.domacin : u.gost;
+                ispisHtml += `<div class="text-success small fw-bold mt-1">(${u.golDomacin}:${u.golGost}) nakon penala: <strong>${u.penaliDomacin}:${u.penaliGost}</strong> - Prolazi <u>${pobTim}</u></div>`;
+            } else if (!isAdmin) {
+                ispisHtml += `<div class="text-warning small fw-bold mt-1">Čeka se izvođenje penala...</div>`;
+            }
+            
+            ispisHtml += `</div>`;
+        }
+
+        ispisHtml += `</div>`;
+    });
+    return ispisHtml;
+}
+
+async function sha256(message) {
+    const msgBuffer = new TextEncoder().encode(message);                    
+    const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+}
+
+async function adminPrijava() {
     if(isAdmin) {
         isAdmin = false;
         document.getElementById('statusAdmin').classList.add('d-none');
@@ -409,38 +543,28 @@ function adminPrijava() {
         prikaziSve();
         return;
     }
-    
     const lozinka = prompt("Unesi lozinku za administraciju:");
-    if (lozinka === ADMIN_LOZINKA) {
-        isAdmin = true;
-        document.getElementById('statusAdmin').classList.remove('d-none');
-        document.getElementById('btnReset').classList.remove('d-none');
-        document.getElementById('btnPrijava').innerText = "Odjavi se (Pregled)";
-        prikaziSve();
-    } else if(lozinka !== null) {
-        alert("Pogrešna lozinka!");
+    if (lozinka !== null) {
+        const uneseniHash = await sha256(lozinka);
+        if (uneseniHash === ADMIN_HASH) {
+            isAdmin = true;
+            document.getElementById('statusAdmin').classList.remove('d-none');
+            document.getElementById('btnReset').classList.remove('d-none');
+            document.getElementById('btnPrijava').innerText = "Odjavi se (Pregled)";
+            prikaziSve();
+        } else { alert("Pogrešna lozinka!"); }
     }
 }
 
 function resetujSveBaza() {
     if (isAdmin && confirm("Pažnja! Da li želiš obrisati SVE rezultate u bazi za cijeli turnir?")) {
-        fetch(FIREBASE_URL + 'turnir.json', {
-            method: 'PUT',
-            body: JSON.stringify(strukturaTurnira)
-        }).then(() => pokreniSinhronizaciju());
+        fetch(FIREBASE_URL + 'turnir.json', { method: 'PUT', body: JSON.stringify(strukturaTurnira) }).then(() => pokreniSinhronizaciju());
     }
 }
 
-// Inicijalno učitavanje i pokretanje automatskog osvježavanja svakih 7 sekundi za posjetioce
 pokreniSinhronizaciju();
-setInterval(function() {
-    // Ako admin kuca, nemoj prekidati osvježavanjem sa servera da ne ometa unos
-    if(!isAdmin) {
-        pokreniSinhronizaciju();
-    }
-}, 7000);
+setInterval(function() { if(!isAdmin) { pokreniSinhronizaciju(); } }, 7000);
 </script>
-
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
